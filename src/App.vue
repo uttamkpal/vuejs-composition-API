@@ -1,5 +1,5 @@
 <script setup>
-import { nextTick, reactive, ref } from 'vue';
+import { computed, nextTick, reactive, ref } from 'vue';
 
   var count = ref(1);
   console.log(count)
@@ -24,6 +24,35 @@ import { nextTick, reactive, ref } from 'vue';
     obj.value.arr.push(Math.round(Math.random(1,100)*100))
   }
 const state = reactive({name: "Uttam Kumar Pal"})
+
+const firstName = ref('Uttam')
+const lastName = ref('Kumar')
+
+const fullName = computed({
+  // getter
+  get() {
+    return firstName.value + ' ' + lastName.value
+  },
+  // setter
+  set(newValue) {
+    // Note: we are using destructuring assignment syntax here.
+    [firstName.value, lastName.value] = newValue.split(' ')
+  }
+})
+const ok = true
+
+const classObject = reactive({
+  test: true,
+  'text-danger': false
+})
+const active = ref(false)
+
+const activeColor = ref('red')
+const fontSize = ref(30)
+const styleObject = reactive({
+  color: 'red',
+  fontSize: '13px'
+})
 </script>
 
 <template>
@@ -36,10 +65,18 @@ const state = reactive({name: "Uttam Kumar Pal"})
     {{ obj }} 
     <br>
     <button @click="mutateDeeply">update obj</button>
+    <br>
+    <div :style="{ color: activeColor, fontSize: fontSize + 'px' }">Here use inline style </div>
+    <div :style="styleObject">Here use inline style by object form </div>
+    <br>
+    <div @click="active = !active" :class="[ active ? 'test' : 'btn']">click for update</div>
   </div>
   <div>
-    <p>My name is {{ state.name }}</p>
+    <p :class="classObject">My name is {{ state.name }}</p>
     <button @click="state.name = 'Name is changed'">Change my name</button>
+  </div>
+  <div>
+    <h2 class="container" :class="{test: ok}">Computed Properties: {{ fullName }} <br> <button @click="fullName = 'Name changed'" :class="{'btn': ok}">change name</button></h2>
   </div>
   <div>
     <p>objects, arrays, or JavaScript built-in data structures like Map via ref().</p>
@@ -87,7 +124,7 @@ const state = reactive({name: "Uttam Kumar Pal"})
 </template>
 
 <style>
-#container{
+.container{
   width: 70%;
   margin: 0 auto;
 }
