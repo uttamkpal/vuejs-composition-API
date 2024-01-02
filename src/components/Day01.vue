@@ -14,10 +14,10 @@ onMounted(() => {
   count.value = 3
   console.log('Vue js in running in this page')
 })
-const htmlText = '<p> This is a Html Text with red color.</p>';
+const htmlText = '<p> This is a Html Text with red color.</p>'
 
 const idList = {
-  id : "test"
+  id: 'test'
 }
 const id = ref('test')
 const objectOfAttrs = {
@@ -26,9 +26,9 @@ const objectOfAttrs = {
 }
 const classTest = 'test'
 const ok = ref(true)
-const num = [1,2,3,4,5]
+const num = [1, 2, 3, 4, 5]
 const url = ref('/')
-const attributeName = ref("href")
+const attributeName = ref('href')
 const eventName = ref('click')
 </script>
 
@@ -41,31 +41,33 @@ const eventName = ref('click')
     </div>
   </header> -->
   <div v-bind="objectOfAttrs">
-    <div :class="classTest">{{ ok ? "Yes it is OK" : "No it is not OK" }} <span class="btn"  @click="ok = !ok">change ok </span> 
-     <div>
+    <div :class="classTest">
+      {{ ok ? 'Yes it is OK' : 'No it is not OK' }}
+      <span class="btn" @click="ok = !ok">change ok </span>
       <div>
-        <a :href="url">go to home</a> <br>
-        <a v-bind:[attributeName]="`${url}/nothing`">{{attributeName}}</a>
-        <br>
-        <button @[eventName]="attributeName= 'nothing'">{{attributeName}}</button>
-        <br>
-        <a :[attributeName]="url"> {{ url }} </a>
+        <div>
+          <a :href="url">go to home</a> <br />
+          <a v-bind:[attributeName]="`${url}/nothing`">{{ attributeName }}</a>
+          <br />
+          <button @[eventName]="attributeName = 'nothing'">{{ attributeName }}</button>
+          <br />
+          <a :[attributeName]="url"> {{ url }} </a>
+        </div>
+        <p v-if="ok">This is show when OK is true</p>
+
+        <!--{{ massage.split('').reverse().join('') }}-->
       </div>
-      <p v-if="ok">This is show when OK is true</p>
-      
-      <!--{{ massage.split('').reverse().join('') }}-->
-    </div> 
-    <div>
-      <h3 v-for="item in num" :id="`id-number-${item}`">{{ item }}</h3>
-    </div>
+      <div>
+        <h3 v-for="item in num" :id="`id-number-${item}`">{{ item }}</h3>
+      </div>
     </div>
 
     <h1>
-    {{ massage }}
+      {{ massage }}
     </h1>
     <!-- <div v-bind="idList" v-html="htmlText"></div> -->
     <div :id="id" v-html="htmlText"></div>
-    <button @click="id='something'">change Id test to something</button>
+    <button @click="id = 'something'">change Id test to something</button>
 
     <h1>Count is : {{ count }}</h1>
     <!-- <button @click="count++">
@@ -78,31 +80,30 @@ const eventName = ref('click')
     <button @click="Decrement">-</button>
   </div>
 
-  
   <form @submit.prevent="onSubmit">...</form>
   <!-- <RouterView /> -->
 </template>
 
 <style>
-#container{
+#container {
   width: 70%;
   margin: 0 auto;
 }
-  #test{
-    font-size: 30px;
-    color: red;
-  }
-  #something{
-    font-size: 20px;
-    color: green;
-  }
-.btn{
+#test {
+  font-size: 30px;
+  color: red;
+}
+#something {
+  font-size: 20px;
+  color: green;
+}
+.btn {
   background-color: blue;
   color: white;
   padding: 5px 10px;
   border-radius: 5px;
 }
-.test{
+.test {
   font-size: 30px;
   color: red;
 }

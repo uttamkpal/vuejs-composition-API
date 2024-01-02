@@ -1,13 +1,11 @@
 <script setup>
-import Day03 from './components/Day03.vue';
+import InputBinding from './components/InputBinding.vue'
 </script>
 
 <template>
-<div>
-  <Day03 />
-</div>
+  <div>
+    <InputBinding />
+  </div>
 </template>
 
-<style>
-
-</style>
+<style></style>
