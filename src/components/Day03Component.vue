@@ -3,7 +3,6 @@ import { computed, reactive, ref } from 'vue'
 
 const isSee = ref(false)
 const type = 'A'
-const parentMessage = ref('Parent')
 const items = ref([{ message: 'item' }, { message: 'item_' }])
 
 /* items.forEach((item, index) => {
@@ -48,17 +47,17 @@ function even(numbers) {
   <div>
     <h2>v-for List Rendering</h2>
     <ul>
-      <li v-for="{ message } in items">
+      <li v-for="{ message } in items" :key="message">
         {{ message }}
       </li>
 
       <!-- with index alias -->
-      <li v-for="({ message }, index) in items">{{ message }} {{ index + 1 }}</li>
+      <li v-for="({ message }, index) in items" :key="index">{{ message }} {{ index + 1 }}</li>
     </ul>
 
     <ul>
-      <li v-for="(value, key) in myObject">{{ key }} : {{ value }}</li>
-      <li v-for="(value, key, index) in myObject">{{ index }} - {{ key }} : {{ value }}</li>
+      <li v-for="(value, key) in myObject" :key="key">{{ key }} : {{ value }}</li>
+      <li v-for="(value, key, index) in myObject" :key="index">{{ index }} - {{ key }} : {{ value }}</li>
     </ul>
 
     <!-- <MyComponent
@@ -69,24 +68,24 @@ function even(numbers) {
 /> -->
     <h1>v-if and v-for in same element</h1>
     <div>v-if not work so we can see title</div>
-    <li v-for="(item, key) in myObject" v-if="key != 'title'">
+    <li v-for="(item, key) in myObject" :key="key" v-if="key != 'title'">
       {{ item }}
     </li>
     <h3>
       Solution : This can be fixed by moving v-for to a wrapping template tag (which is also more
       explicit):
     </h3>
-    <template v-for="(item, key) in myObject">
+    <template v-for="(item, key) in myObject" :key="key">
       <li v-if="key != 'title'">
         {{ item }}
       </li>
     </template>
     <h3>evenNumbers</h3>
-    <div v-for="evenNumber of evenNumbers">
+    <div v-for="evenNumber of evenNumbers" :key="evenNumber">
       {{ evenNumber }}
     </div>
-    <ol v-for="numbers in sets">
-      <li v-for="n in even(numbers)">{{ n }}</li>
+    <ol v-for="numbers in sets" :key="numbers">
+      <li v-for="n in even(numbers)" :key="n">{{ n }}</li>
     </ol>
   </div>
 </template>
