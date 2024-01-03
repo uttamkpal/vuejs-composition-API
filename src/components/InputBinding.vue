@@ -91,7 +91,7 @@ const options = ref([
         </select>
       </div>
       <select v-model="selected">
-        <option v-for="option in options" :value="option.value">
+        <option v-for="option in options" :value="option.value" :key="option">
           {{ option.text }}
         </option>
       </select>

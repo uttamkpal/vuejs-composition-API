@@ -16,9 +16,9 @@ onMounted(() => {
 })
 const htmlText = '<p> This is a Html Text with red color.</p>'
 
-const idList = {
-  id: 'test'
-}
+//const idList = {
+//  id: 'test'
+//}
 const id = ref('test')
 const objectOfAttrs = {
   id: 'container',
@@ -58,7 +58,7 @@ const eventName = ref('click')
         <!--{{ massage.split('').reverse().join('') }}-->
       </div>
       <div>
-        <h3 v-for="item in num" :id="`id-number-${item}`">{{ item }}</h3>
+        <h3 v-for="item in num" :id="`id-number-${item}`" :key="item">{{ item }}</h3>
       </div>
     </div>
 
